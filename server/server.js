@@ -1,15 +1,19 @@
-const express = require('express')
-const mongoose = require('mongoose')
+import express from 'express'
+import mongoose from 'mongoose'
 const app = express()
-const Dish = require('./Dish')
+import Dish from './Dish.js'
 const DB_URL = 'mongodb+srv://andrewrd0364:visagemain0364@cluster0.b5tzfiz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
 
 app.use(express.json())
 
 app.post("/", async (req, res) => {
-    const {name, description, picture} = req.body
-    const dish = await Dish.create({name, description, picture})
-    res.status(200).json('Server working')
+    try {
+        const {name, description, picture} = req.body
+        const dish = await Dish.create({name, description, picture})
+        res.json(dish)
+    } catch (e) {
+        res.status(500).json(e)
+    }
 })
 
 async function startApp(){

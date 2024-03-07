@@ -1,8 +1,8 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 const Dish = new mongoose.Schema({
-    name: {type: String, required: True},
-    description: {type: String, required: True},
+    name: {type: String, required: true},
+    description: {type: String, required: true},
     picture: {type: String}
 })
 
